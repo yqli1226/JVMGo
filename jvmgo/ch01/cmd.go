@@ -1,15 +1,17 @@
 package main
+
 import (
 	"flag"
 	"fmt"
 	"os"
 )
+
 type Cmd struct {
-	helpFlag	bool
-	versionFlag	bool
-	cpOption	string
-	class		string
-	args		[]string
+	helpFlag    bool
+	versionFlag bool
+	cpOption    string
+	class       string
+	args        []string
 }
 
 func parseCmd() *Cmd {
@@ -23,8 +25,8 @@ func parseCmd() *Cmd {
 	flag.Parse()
 	args := flag.Args()
 	if len(args) > 0 {
-	cmd.class = args[0]
-	cmd.args = args[1:]
+		cmd.class = args[0]
+		cmd.args = args[1:]
 	}
 	return cmd
 }
