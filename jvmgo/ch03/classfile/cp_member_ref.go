@@ -20,6 +20,15 @@ func (self *ConstantMemberRefInfo) NameAndDescriptor() (string, string) {
 	return self.cp.getNameAndType(self.nameAndTypeIndex)
 }
 
-type ConstantFieldRefInfo struct{ ConstantMemberRefInfo }
-type ConstantMethodRefInfo struct{ ConstantMemberRefInfo }
-type ConstantInterfaceMethodRefInfo struct{ ConstantMemberRefInfo }
+type ConstantFieldRefInfo struct {
+	ConstantMemberRefInfo
+	cp ConstantPool
+}
+type ConstantMethodRefInfo struct {
+	ConstantMemberRefInfo
+	cp ConstantPool
+}
+type ConstantInterfaceMethodRefInfo struct {
+	ConstantMemberRefInfo
+	cp ConstantPool
+}

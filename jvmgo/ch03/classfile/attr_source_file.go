@@ -11,5 +11,5 @@ func (self *SourceFileAttribute) readInfo(reader *ClassReader) {
 }
 
 func (self *SourceFileAttribute) FeilName() string {
-	return self.cp.getUft8(self.sourceFileIndex)
+	return self.cp.getUtf8(self.sourceFileIndex)
 }

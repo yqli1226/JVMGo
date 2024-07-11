@@ -15,7 +15,7 @@ func readAttributes(reader *ClassReader, cp ConstantPool) []AttributeInfo {
 
 func readAttribute(reader *ClassReader, cp ConstantPool) AttributeInfo {
 	attrNameIndex := reader.readUint16()
-	attrName := cp.getUft8(attrNameIndex)
+	attrName := cp.getUtf8(attrNameIndex)
 	attrLen := reader.readUint32()
 	attrInfo := newAttribute(attrName, attrLen, cp)
 	attrInfo.readInfo(reader)

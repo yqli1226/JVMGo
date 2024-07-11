@@ -27,19 +27,19 @@ func (self ConstantPool) getConstantInfo(index uint16) ConstantInfo {
 // 查看字段或者方法的 名字和描述符（类型）
 func (self ConstantPool) getNameAndType(index uint16) (string, string) {
 	ntInfo := self.getConstantInfo(index).(*ConstantNameAndTypeInfo)
-	name := self.getUft8(ntInfo.nameIndex)
-	_type := self.getUft8(ntInfo.descriptorIndex)
+	name := self.getUtf8(ntInfo.nameIndex)
+	_type := self.getUtf8(ntInfo.descriptorIndex)
 	return name, _type
 }
 
 func (self ConstantPool) getClassName(index uint16) string {
 	classInfo := self.getConstantInfo(index).(*ConstantClassInfo)
-	return self.getUft8(classInfo.nameIndex)
+	return self.getUtf8(classInfo.nameIndex)
 }
 
-func (self ConstantPool) getUft8(index uint16) string {
+func (self ConstantPool) getUtf8(index uint16) string {
 	utf8Info := self.getConstantInfo(index).(*ConstantUtf8Info)
-	return utf8Info
+	return utf8Info.str
 }
 
 // 定义接口表示常量信息
@@ -85,12 +85,12 @@ func newConstantInfo(tag uint8, cp ConstantPool) ConstantInfo {
 		return &ConstantInterfaceMethodRefInfo{cp: cp}
 	case CONSTANT_NameAndType:
 		return &ConstantNameAndTypeInfo{}
-	case CONSTANT_MethodType:
-		return &ConstantMethodTypeInfo{}
-	case CONSTANT_MethodHandle:
-		return &ConstantMethodHandleInfo{}
-	case CONSTANT_InvokeDynamic:
-		return &ConstantInvokeDynamicInfo{}
+	//case CONSTANT_MethodType:
+	//	return &ConstantMethodTypeInfo{}
+	//case CONSTANT_MethodHandle:
+	//	return &ConstantMethodHandleInfo{}
+	//case CONSTANT_InvokeDynamic:
+	//	return &ConstantInvokeDynamicInfo{}
 	default:
 		panic("java.lang.ClassFormatError: constant pool tag!")
 	}
